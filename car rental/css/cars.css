@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    
+    }
+    :root{
+    --main-color : #fbbc00;
+    --second-color:#d08112;
+    --text-color:#444;
+    --gradient:linear-gradient(#fe5b3d,-#ffac38)
+    
+    }
+    html::-webkit-scrollbar{
+    width: 0.5rem;
+    
+    }
+    html::-webkit-scrollbar-track{
+    background: transparent;
+    
+    }
+    html::-webkit-scrollbar-thumb{
+        background: var(--main-color);
+        border-radius: 6rem;
+        }
+body{
+    background-image: url("https://wallpapercave.com/wp/wp661789.png");
+    background-repeat: no-repeat;
+    background-position: center;
+  background-size: cover;
+}
+th{
+    font-size: 40px;
+    padding: 15px;
+    color: black;
+}
+#cars{
+    text-align: center;
+    
+    text-decoration:dotted;
+    text-decoration: underline;
+    color: var(--main-color);
+    padding: 15px;
+    font-size: 60px;
+}
+  tr{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+  }
+  table{
+ margin-left: auto;
+ margin-right: auto;
+  }
