@@ -18,20 +18,24 @@ if(isset($_POST['submitcar']))
     , `office_id`, `priceperday`, `image`)
      VALUES(:plateno, :model, :year, :color, :trans,:purpose, :officeid, :priceperday, :imagel)");
     
+try{$insert->execute([
+   ':plateno' => $plate,
+   ':model'=> $modelc,
+   ':year' => $yearr,
+   ':color' => $colorr,
+   ':trans' => $transm,
+   ':purpose' => $stat,
+   ':officeid' => $office,
+   ':priceperday' => $price,
+   ':imagel' => $image
+   ]		
+     
+     );}
+        catch(Exception $E){
+         $output="Invalid inputs";
 
-        $insert->execute([
-		':plateno' => $plate,
-		':model'=> $modelc,
-		':year' => $yearr,
-		':color' => $colorr,
-		':trans' => $transm,
-		':purpose' => $stat,
-      ':officeid' => $office,
-		':priceperday' => $price,
-		':imagel' => $image
-		]		
-        
-        );
+        }
+
         header('location:addcar.php');
     }
      
@@ -56,7 +60,7 @@ if(isset($_POST['submitcar']))
 <body>
 
 <section class="get-in-touch">
-   <h1 class="title">Add Car</h1>
+   <h1 class="title">ADD CAR</p></h1>
    <form class="contact-form row" action="addcar.php" method="post">
       <div class="form-field col-lg-6 ">
          <input name="plateno" id="plate_no" class="input-text js-input" type="text" required>
