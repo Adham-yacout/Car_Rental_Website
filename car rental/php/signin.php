@@ -36,6 +36,59 @@ if(isset($_POST['submitsignup']))
         header('location:../html/userland.html');
     }
      }
+
+	 if(isset($_POST['sumbitsignin']))
+	 {
+		function validate($data){
+			$data = trim($data);
+			$data = stripslashes($data);
+			$data = htmlspecialchars($data);
+			return $data;
+
+		}
+		$emailusers = validate($_POST['emailsin']);
+		$pass2 = validate($_POST['passsin']);
+
+		if(empty($emailusers)){
+			
+			echo '<script>alert("email is empty")</script>';
+			
+			//exit();
+			
+		}
+		else if(empty($pass2)){
+			echo '<script>alert("password is empty")</script>';
+			
+		}
+		else{$login = $conn ->query("SELECT * FROM `customer` WHERE email='$emailusers' AND  password='$pass2'");
+			$login->execute();
+			 $data = $login->fetch(PDO::FETCH_ASSOC);
+			
+			if($login->rowCount() > 0)
+			{
+				
+				if($pass2==$data['password'])
+				{ 
+				  //$_SESSION['username'] =$data['name'];
+				  header('location:../html/userland.html');
+					
+					
+				}
+				else{
+					echo '<script>alert("Incorrect data")</script>';
+				  $output = "Incorrect data ";  
+				
+				}
+			}
+			else{
+				echo '<script>alert("Incorrect data")</script>';
+			
+			   
+			}}
+		
+
+
+	 }
   
 ?>
 
@@ -73,16 +126,16 @@ if(isset($_POST['submitsignup']))
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="connect.php" method = "post">
+		<form action="signin.php" method = "post">
 			<h1>Sign in</h1>
 			<div class="social-container">
 
 			</div>
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input name="emailsin" type="email" placeholder="Email" />
+			<input name="passsin" type="password" placeholder="Password" />
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<button id="signinbtn" name="sumbitsignin" type="submit">Sign In</button>
 		</form>
 	</div>
 	<div class="overlay-container">
