@@ -1,6 +1,7 @@
 <?php require "connect.php"?>
 <?php
 $output ="";
+session_start();
 if(isset($_POST['submitsignup']))
 {	
 	$userssn = $_POST['ssn'];
@@ -70,7 +71,7 @@ if(isset($_POST['submitsignup']))
 				
 				if($pass2==$data['password'])
 				{ 
-				  //$_SESSION['username'] =$data['name'];
+				  $_SESSION['ssn'] =$data['ssn'];
 				  header('location:../html/userland.php');
 					
 					
