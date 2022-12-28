@@ -17,7 +17,8 @@ if(isset($_POST['submitsignup']))
      $data = $signup->fetch(PDO::FETCH_ASSOC);
      if($signup->rowCount() > 0)
      {
-        $output = "email is already found in database";  
+		echo '<script>alert("email is already found in database")</script>';
+         
      }
      else{
 
@@ -33,7 +34,7 @@ if(isset($_POST['submitsignup']))
 			
         
         );
-        header('location:../html/userland.html');
+        // header('location:../html/userland.html');
     }
      }
 
@@ -70,7 +71,7 @@ if(isset($_POST['submitsignup']))
 				if($pass2==$data['password'])
 				{ 
 				  //$_SESSION['username'] =$data['name'];
-				  header('location:../html/userland.html');
+				  header('location:../html/userland.php');
 					
 					
 				}
