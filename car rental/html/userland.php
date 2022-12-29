@@ -20,24 +20,25 @@ if(isset($_POST['logoutbtn']))
            Admin
         </title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="stylesheet" href="../css/userlands.css">
+        <link rel="stylesheet" href="../css/adminland.css">
     </head>
 
 <body>
-  <header>
+<header>
    
     
     <div class="menu" id="menuicon"
      <ul class="navbar">
- 
+    <li><a href="../html/index.html">Logout</a></li>
+    
      </ul></div>
      <div class="header-btn">
-     <form action="userland.php" method = "post">
-    <button id="logoutbtn" class ="sign"  name="logoutbtn" type="submit">Logout</button>
-    </form>
-     </div>
+   
+    
     </header>
-  <Button class="buttons" >Rent</Button>
+   
+    <a href="../php/cars.php"><Button class="buttons" >Rent</Button></a>
+  
   
   <Button class="buttons">Search</Button>
   
