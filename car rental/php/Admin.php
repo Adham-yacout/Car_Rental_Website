@@ -1,3 +1,24 @@
+
+<?php
+$output ="";
+if(isset($_POST['sign'])){
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
+    
+   
+   if($email=="admin@mail.com" and $pass=="123")
+   {
+      echo '<script>alert("welcome back")</script>';
+      header('location:../html/adminlandpage.html');
+   }
+ else{
+   echo '<script>alert("INCORRECT DATA")</script>';
+ }
+  
+   
+   
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,18 +53,18 @@
 
 <section class="get-in-touch">
    <h1 class="title">Admin Signin</h1>
-   <form class="contact-form row" action="../html/Adminlandpage.html">
+   <form class="contact-form row" action="Admin.php"  method = "post">
       <div class="form-field col-lg-6 ">
-         <input id="email" class="input-text js-input" type="email" required>
+         <input id="email" class="input-text js-input" name="email" type="email" required>
          <label class="label" for="email">E-mail</label>
       </div> 
    <div class="form-field col-lg-6">
-         <input id="name" class="input-text js-input" type="text" required>
+         <input id="name" class="input-text js-input" name="pass" type="text" required>
          <label class="label" for="pass">Password</label>
       </div>
     
       <div class="form-field col-lg-12">
-         <input class="submit-btn" type="submit" value="Login">
+         <input class="submit-btn" name="sign" type="submit" value="Login">
       </div>
    </form>
    <link rel="stylesheet" href="../css/styleadmin.css">
