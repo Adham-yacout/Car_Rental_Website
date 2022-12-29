@@ -1,5 +1,7 @@
 
 
+
+
 <html>
     <head>
         <meta charset="UTF-8"> 
@@ -34,10 +36,17 @@
                 <th>
                    color
                 </th>
-                
+                <th>
+                 price per day
+                </th>
+                <th>
+                  Rent
+                </th>
+           
             </tr>
             
             <?php
+           
 $host = "localhost";
 $db_name = "car_rental_system";
 $user = "root";
@@ -54,6 +63,7 @@ $connection= new mysqli($host, $user, $password, $db_name);
  }
  while($row = $result ->fetch_assoc())
  {
+  
    echo " <tr>
         <td> 
         <img  src='". $row["image"] . "' width='90%' height='90%' >
@@ -71,13 +81,29 @@ $connection= new mysqli($host, $user, $password, $db_name);
            <td>
             ". $row["transmission"] ."
            </td>
+          
            <td>
             ". $row["color"] ."
            </td>
+           <td>
+           ". $row["priceperday"] ."
+          </td>
+
+ 
+           <td>
+           <form action='rent.php' method='GET'>
+         
+          <button type='submit' name='rent'  value=".$row['plate_no'].">Rent</button>
+         
+          
+          </form>
+          </td>
+         
     </tr>";
+    
  }
 ?>
-               
+          
 
 
            
