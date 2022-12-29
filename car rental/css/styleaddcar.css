@@ -1,4 +1,32 @@
-
+*{
+  margin: 0;
+  padding: 0;
+  
+  scroll-padding-top: 2rem;
+  scroll-behavior: smooth;
+  list-style: none;
+  text-decoration: none;
+  
+  }
+  :root{
+    --main-color : #fbbc00;
+    --second-color:#d08112;
+    --text-color:#444;
+    --gradient:linear-gradient(#fe5b3d,-#ffac38)
+    
+    }
+    html::-webkit-scrollbar{
+      width: 0.5rem;
+      
+      }
+      html::-webkit-scrollbar-track{
+      background: transparent;
+      
+      }
+      html::-webkit-scrollbar-thumb{
+          background: var(--main-color);
+          border-radius: 6rem;
+          }
 body {
   
     width: fit-content;
@@ -7,6 +35,8 @@ body {
     background-size: cover;
     background-image: url("https://blog.consumerguide.com/wp-content/uploads/sites/2/2017/09/Screen-Shot-2017-09-20-at-2.17.14-PM.png")
    }
+   
+
   .get-in-touch {
       max-width: 800px;
       margin: 50px auto;
@@ -79,3 +109,4 @@ body {
       width:200px;
       cursor: pointer;
     }
+   
