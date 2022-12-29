@@ -1,5 +1,6 @@
 CREATE DATABASE car_rental_system;
 
+
 use car_rental_system;
 CREATE TABLE  car(
     plate_no varchar(7) PRIMARY KEY,
@@ -22,10 +23,10 @@ CREATE TABLE  office(
 CREATE TABLE  reservation(
     reservation_id int not null AUTO_INCREMENT PRIMARY KEY,
     plate_no varchar(7) ,
-    start_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    end_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    start_date DATETIME DEFAULT CURRENT_TIMESTAMP UNIQUE,
+    end_date DATETIME DEFAULT CURRENT_TIMESTAMP UNIQUE,
     customer_ssn int ,
-    amount double,
+    amount varchar(150),
     paid   ENUM('Y','N') NOT NULL
 );
 
