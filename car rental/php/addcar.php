@@ -58,7 +58,15 @@ try{$insert->execute([
 </head>
 
 <body>
-
+<div class="headers">
+   
+   <a href="../html/Adminlandpage.html" class ="sign" style="background: #000;
+            color: #FFF;
+            padding: 10px;
+            margin-top: 70px;
+            margin-left: 5px;
+            border-radius: 3rem;">Admin Page</a>
+ </div>
 <section class="get-in-touch">
    <h1 class="title">ADD CAR</p></h1>
    <form class="contact-form row" action="addcar.php" method="post">
