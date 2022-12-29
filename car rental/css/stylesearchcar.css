@@ -13,7 +13,7 @@
     }
 body {
     font-family: "Inter", sans-serif;
-    color: #999900;
+    color: #f2f208;
   
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,9 +21,9 @@ body {
 
 }
 form {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
 }
 label {
     display: flex;
