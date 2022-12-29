@@ -1,96 +1,154 @@
-*, *:after, *:before {
-    box-sizing: border-box;
-}
-*{
-    margin: 0;
-    padding: 0;
-    
-    scroll-padding-top: 2rem;
-    scroll-behavior: smooth;
-    list-style: none;
-    text-decoration: none;
-    
-    }
-body {
-    font-family: "Inter", sans-serif;
-    color: #f2f208;
-  
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("https://wallpaperaccess.com/full/1554143.jpg")
+
+<html>
+    <head>
+    <link rel="stylesheet" href="../css/stylesearchcar.css">
+    </head>
+    <body>
+    <div class="container" >
+
+<form action="searchcar.php" method = "post">
+<input id="name" name="data" class="input-text js-input" type="text" required>
+     <label class="label" for="name">Search by</label>
+    <label>
+        <input type="radio" name="search" id="1" value="1" checked/>
+        <span>Model</span>
+    </label>
+    <label>
+        <input type="radio" name="search" id="2" value="2" />
+        <span>Year</span>
+    </label>
+    <label>
+        <input type="radio" name="search" id="3" value="3" />
+        <span>Color</span>
+    </label>
+    <label>
+        <input type="radio" name="search" id="4" value="4" />
+        <span>Transmission</span>
+    </label>
+    <label>
+        <input type="radio" name="search" id="5" value="5" />
+        <span> max Price</span>
+    </label>
+    <input class="submit-btn" name="submit" type="submit" value="Search">
+</form>
+<div id="carstable" >
+
+    <table  border="4" width="90%" >
+       
+        <tr >
+            <th width="20%"   >
+            image
+            </th>
+            <th >
+                plate number
+              </th>
+            <th >
+              Model
+            </th>
+            <th>
+               year
+            </th>
+            <th>
+               transmission
+             </th>
+            <th>
+               color
+            </th>
+            <th>
+             price per day
+            </th>
+         
+        </tr>
+        <?php
+        
+$host = "localhost";
+$db_name = "car_rental_system";
+$user = "root";
+$password = "";
+$connection= new mysqli($host, $user, $password, $db_name);
+mysqli_report(MYSQLI_REPORT_STRICT);
+
+if(isset($_POST['submit']))
+{	
+$searchby=$_POST['data'];
+$checker = $_POST['search']; 
+if($checker=="1")
+{
+//SELECT * FROM `car` WHERE model like"%toyota%"
+$name = "%$searchby%";
+$sql = "SELECT * FROM `car` WHERE model like ?"; // SQL with parameters
+$stmt = $connection->prepare($sql); 
+$stmt->bind_param("s", $name);
+$stmt->execute();
+$result = $stmt->get_result(); // get the mysqli result
 
 }
-form {
-    display: grid;
-    flex-wrap: wrap;
-    flex-direction: column;
+elseif ($checker=="2")
+{
+
+$sql = "SELECT * FROM `car` WHERE year =?"; // SQL with parameters
+$stmt = $connection->prepare($sql); 
+$stmt->bind_param("s", $searchby);
+$stmt->execute();
+$result = $stmt->get_result(); // get the mysqli result
 }
-label {
-    display: flex;
-    cursor: pointer;
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 0.375em;
+elseif ($checker=="3")
+{
+$sql = "SELECT * FROM `car` WHERE color =?"; // SQL with parameters
+$stmt = $connection->prepare($sql); 
+$stmt->bind_param("s", $searchby);
+$stmt->execute();
+$result = $stmt->get_result(); // get the mysqli result
+}
+elseif ($checker=="4")
+{
+$sql = "SELECT * FROM `car` WHERE transmission =?"; // SQL with parameters
+$stmt = $connection->prepare($sql); 
+$stmt->bind_param("s", $searchby);
+$stmt->execute();
+$result = $stmt->get_result(); // get the mysqli result
+}
+elseif ($checker=="5")
+{
+$sql = "SELECT * FROM `car` WHERE priceperday <=? order by priceperday "; // SQL with parameters
+$stmt = $connection->prepare($sql); 
+$stmt->bind_param("s", $searchby);
+$stmt->execute();
+$result = $stmt->get_result(); // get the mysqli result
 
 }
-label input {
-    position: absolute;
-    left: -9999px;
+else{
+$sql = "SELECT * FROM car";
+$result= $connection->query($sql);
 }
-label input:checked + span {
-    background-color: #000;
+while($row = $result ->fetch_assoc())
+{
+echo " <tr>
+   <td> 
+   <img  src='". $row["image"] . "' width='90%' height='90%' >
+   
+   </td>
+   <td>
+       ". $row["plate_no"] ."
+      </td>
+      <td>
+      " . $row["model"] ."
+      </td>
+      <td>
+       ". $row["year"] ."
+      </td>
+      <td>
+       ". $row["transmission"] ."
+      </td>
+      <td>
+       ". $row["color"] ."
+      </td>
+      <td>
+      ". $row["priceperday"] ."
+     </td>
+</tr>";
 }
-label input:checked + span:before {
-    box-shadow: inset 0 0 0 0.4375em #ffff00;
 }
-label span {
-    display: flex;
-    align-items: center;
-    padding: 0.375em 0.75em 0.375em 0.375em;
-    border-radius: 99em;
-    transition: 0.25s ease;
-}
-label span:hover {
-    background-color: #000;
-}
-label span:before {
-    display: flex;
-    flex-shrink: 0;
-    content: "";
-    background-color: #000;
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    margin-right: 0.375em;
-    transition: 0.25s ease;
-    box-shadow: inset 0 0 0 0.125em #999900;
-}
-.container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-table{
-    margin-left: auto;
-    margin-right: auto;
-     }
-.submit-btn {
-    display: inline-block;
-    background-color: #000;
-    color: #999900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 16px;
-    padding: 8px 16px;
-    border: none;
-    width:200px;
-    cursor: pointer;
-  }
+?>
+    </body>
+</html>
