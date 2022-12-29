@@ -8,7 +8,7 @@ CREATE TABLE  car(
   `year` int,
   color varchar(250) not null,
     transmission varchar(250) not null ,
-    `status` ENUM ('ACTIVE','OUT_OF_SERVICE','RENTED'),
+    `status` ENUM ('ACTIVE','OUT_OF_SERVICE'),
      office_id int ,
     priceperday double,
     image text 
@@ -26,6 +26,7 @@ CREATE TABLE  reservation(
     start_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     end_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     customer_ssn int ,
+    amount double,
     paid   ENUM('Y','N') NOT NULL
 );
 
