@@ -1,69 +1,96 @@
-<?php
-$host = "localhost";
-$db_name = "car_rental_system";
-$user = "root";
-$password = "";
-$connection= new mysqli($host, $user, $password, $db_name);
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+    
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    
+    }
+body {
+    font-family: "Inter", sans-serif;
+    color: #f2f208;
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("https://wallpaperaccess.com/full/1554143.jpg")
 
-if(isset($_POST['submit'])){
-// read all rows from database 
- $sql = "SELECT * FROM car";
- $result= $connection->query($sql);
- if(!$result)
- {
-    die("invalid query" .$connection->error);
- }
- while($row = $result ->fetch_assoc())
- {
-   echo " <tr>
-        <td> 
-        <img  src='". $row["image"] . "' width='90%' height='90%' >
-        
-        </td>
-        <td>
-            ". $row["plate_no"] ."
-           </td>
-           <td>
-           " . $row["model"] ."
-           </td>
-           <td>
-            ". $row["year"] ."
-           </td>
-           <td>
-            ". $row["transmission"] ."
-           </td>
-           <td>
-            ". $row["color"] ."
-           </td>
-    </tr>";
- }}
-?>
+}
+form {
+    display: grid;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.375em;
 
-<div class="container" >
-<link rel="stylesheet" href="../css/stylesearchcar.css">
-    <formform action="searchcar.php" method = "post">
-    <input id="name" class="input-text js-input" type="text" required>
-         <label class="label" for="name">Search by</label>
-		<label>
-			<input type="radio" name="search" id="1" checked/>
-			<span>Model</span>
-		</label>
-		<label>
-			<input type="radio" name="search" id="2"/>
-			<span>Year</span>
-		</label>
-		<label>
-			<input type="radio" name="search" id="3"/>
-			<span>Color</span>
-		</label>
-        <label>
-			<input type="radio" name="search" id="4" />
-			<span>Transmission</span>
-		</label>
-		<label>
-			<input type="radio" name="search" id="5"/>
-			<span>Price per day</span>
-		</label>
-        <input class="submit-btn" name="submit" type="submit" value="Search">
-	</form>
-</div>
+}
+label input {
+    position: absolute;
+    left: -9999px;
+}
+label input:checked + span {
+    background-color: #000;
+}
+label input:checked + span:before {
+    box-shadow: inset 0 0 0 0.4375em #ffff00;
+}
+label span {
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em;
+    transition: 0.25s ease;
+}
+label span:hover {
+    background-color: #000;
+}
+label span:before {
+    display: flex;
+    flex-shrink: 0;
+    content: "";
+    background-color: #000;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em #999900;
+}
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+     }
+.submit-btn {
+    display: inline-block;
+    background-color: #000;
+    color: #999900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    width:200px;
+    cursor: pointer;
+  }
