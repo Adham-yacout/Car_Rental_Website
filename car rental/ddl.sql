@@ -23,8 +23,8 @@ CREATE TABLE  office(
 CREATE TABLE  reservation(
     reservation_id int not null AUTO_INCREMENT PRIMARY KEY,
     plate_no varchar(7) ,
-    start_date DATETIME DEFAULT CURRENT_TIMESTAMP UNIQUE,
-    end_date DATETIME DEFAULT CURRENT_TIMESTAMP UNIQUE,
+    start_date DATETIME DEFAULT CURRENT_TIMESTAMP ,
+    end_date DATETIME DEFAULT CURRENT_TIMESTAMP ,
     customer_ssn int ,
     amount varchar(150),
     paid   ENUM('Y','N') NOT NULL
