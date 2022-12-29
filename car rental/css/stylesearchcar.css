@@ -1,10 +1,20 @@
 *, *:after, *:before {
     box-sizing: border-box;
 }
+*{
+    margin: 0;
+    padding: 0;
+    
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+    list-style: none;
+    text-decoration: none;
+    
+    }
 body {
     font-family: "Inter", sans-serif;
     color: #999900;
-    font-size: calc(1em + 1.25vw);
+  
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("https://wallpaperaccess.com/full/1554143.jpg")
@@ -13,7 +23,7 @@ body {
 form {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
 }
 label {
     display: flex;
@@ -68,6 +78,10 @@ label span:before {
     align-items: center;
     padding: 20px;
 }
+table{
+    margin-left: auto;
+    margin-right: auto;
+     }
 .submit-btn {
     display: inline-block;
     background-color: #000;
