@@ -39,8 +39,9 @@ if(isset($_POST['logoutbtn']))
    
     <a href="../php/cars.php"><Button class="buttons" >Rent</Button></a>
   
+  <a href="../php/searchcar.php"><Button  class="buttons">Search</Button></a>
+  <a href="../php/payment.php"><Button  class="buttons">payment</Button></a>
   
-  <Button class="buttons">Search</Button>
   
   
 
