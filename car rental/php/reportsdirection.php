@@ -17,7 +17,7 @@
     
     <div class="menu" id="menuicon"
      <ul class="navbar">
-    <li><a href="../php/Admin.php">Logout</a></li>
+    <li><a href="../html/Adminlandpage.html">Home</a></li>
     
      </ul></div>
      <div class="header-btn">
