@@ -4,15 +4,6 @@
     <link rel="stylesheet" href="../css/stylesearchcar.css">
     </head>
     <body>
-    <div class="headers">
-   
-   <a href="../html/Adminlandpage.html" class ="sign" style="background: #000;
-            color: #FFF;
-            padding: 10px;
-            margin-top: 70px;
-            margin-left: 5px;
-            border-radius: 3rem;">Admin Page</a>
- </div>    
     <div class="container" >
 
 <form action="searchadmincustomer.php" method = "post">
