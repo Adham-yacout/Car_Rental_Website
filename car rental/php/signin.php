@@ -3,25 +3,41 @@
 $output ="";
 session_start();
 if(isset($_POST['submitsignup']))
-{	
-	$userssn = $_POST['ssn'];
-	$nameuser= $_POST['name'];
-    $emailuser = $_POST['email'];
-	$sex=$_POST['sex'];
-	$country=$_POST['country'];
-    $pass=$_POST['password'];
-	
+{
    
-    $insert = $conn->prepare("INSERT INTO `customer`(`ssn`, `name`, `email`, `sex`, `country`, `password`) VALUES(:ssn, :name, :email, :sex, :country, :password)");
-    $signup = $conn ->query("SELECT * FROM customer WHERE email = '$emailuser'");
-    $signup->execute();
-     $data = $signup->fetch(PDO::FETCH_ASSOC);
-     if($signup->rowCount() > 0)
-     {
-		echo '<script>alert("email is already found in database")</script>';
-         
-     }
-     else{
+	 function validate2($data1){
+		$data1 = trim($data1);
+		$data1= stripslashes($data1);
+		$data1 = htmlspecialchars($data1);
+		return $data1;
+
+	}
+		$nameuser = validate2($_POST['name']);
+		$emailuser = validate2($_POST['email']);
+		$userssn = validate2($_POST['ssn']);
+		$pass = validate2($_POST['password']);
+		$passcon = validate2($_POST['password2']);
+		$sex = validate2($_POST['sex']);
+		$country = validate2($_POST['country']);
+	
+		if(empty($userssn||$nameuser||$emailuser|| $sex|| $country|| $pass|| $passcon))
+		{
+			echo '<script>alert("please enter all fields fileds are missing")</script>';
+		}
+	 	elseif(($pass<>$passcon))
+	 	{
+			echo '<script>alert("passwords doesnt match please enter matching passwords")</script>';
+		 }
+     	else{
+			$insert = $conn->prepare("INSERT INTO `customer`(`ssn`, `name`, `email`, `sex`, `country`, `password`) VALUES(:ssn, :name, :email, :sex, :country, :password)");
+			$signup = $conn ->query("SELECT * FROM customer WHERE email = '$emailuser'");
+			$signup->execute();
+			$data1 = $signup->fetch(PDO::FETCH_ASSOC);
+		if($signup->rowcount() > 0)
+		{
+
+			echo '<script>alert("email already exists in database")</script>';
+		}
 
         $insert->execute([
 			':ssn' => $userssn,
@@ -32,13 +48,11 @@ if(isset($_POST['submitsignup']))
 		':password' => $pass
 		]		
 
-			
-        
         );
         // header('location:../html/userland.html');
     }
-     }
-
+     
+ }
 	 if(isset($_POST['sumbitsignin']))
 	 {
 		function validate($data){
@@ -55,7 +69,7 @@ if(isset($_POST['submitsignup']))
 			
 			echo '<script>alert("email is empty")</script>';
 			
-			//exit();
+			
 			
 		}
 		else if(empty($pass2)){
@@ -91,6 +105,7 @@ if(isset($_POST['submitsignup']))
 
 
 	 }
+	
   
 ?>
 
