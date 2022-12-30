@@ -1,6 +1,5 @@
 
 
-
 <?php
  session_start();
 
@@ -16,12 +15,18 @@ if(isset($_POST['Rent']))
  
  
 	$plateno = $_POST['Plate_number'];
-
-    $startdate = $_POST['Start_date'];
+  $Check= $_POST['payment'];
+  $startdate = $_POST['Start_date'];
 	$enddate=$_POST['End_date'];
 	$payed=$_POST['payment_amount'];
   $ssn= $_SESSION['ssn'];
- 
+  if($Check=="1")
+  { 
+    $Checkv='Y';
+  }
+  else if($Check=="2"){
+    $Checkv='N';
+  }
   $sql = "SELECT priceperday FROM car WHERE plate_no=?"; // SQL with parameters
 $stmt = $mysql->prepare($sql); 
 $stmt->bind_param("s", $plateno);
@@ -51,7 +56,7 @@ $row= $result->fetch_assoc(); // fetch the data
  
    
     $result = $mysql -> query("INSERT INTO `reservation`(`plate_no`, `start_date`, `end_date`, `customer_ssn`, `amount`, `paid`) 
-    values ('$plateno','$startdate','$enddate','$ssn','$data','Y')");
+    values ('$plateno','$startdate','$enddate','$ssn','$data','$Checkv')");
      mysqli_query($mysql,$result);
       echo '<script>alert("Car rented succesfully")</script>';
       header('location:../html/userland.php');
@@ -101,17 +106,23 @@ $row= $result->fetch_assoc(); // fetch the data
       <div class="set">
       <div class="Start date">
           <label for="Start date">Start date</label>
-          <input name="Start_date" placeholder="MM/DD/YYYY" id=date1 type="date"></input>
+          <input name="Start_date" placeholder="MM/DD/YYYY" id=date1 type="date" required></input>
         </div>
         <div class="End date">
           <label for="End date">End date</label>
-          <input name="End_date" placeholder="MM/DD/YYYY" id=date2 type="date"></input>
+          <input name="End_date" placeholder="MM/DD/YYYY" id=date2 type="date" required></input>
         </div>
       </div>
      <div class="set">
      <div class="payment amount">
-          <label for="payment amount">payment amount</label>
-          <input name="payment_amount" placeholder="payment amount" type="text"></input>
+     <label for="pay now">pay now</label>
+          <div style="color: #f2f208;" >
+          
+          YES:<input type="radio"  name="payment" id="1" value="1" checked>
+          
+          NO:<input type="radio" name="payment" id="2"   value="2">
+          </div>
+          
         </div>
      </div>
        
@@ -127,4 +138,6 @@ $row= $result->fetch_assoc(); // fetch the data
 </div>
   </body>
 </html>
+
+
 
