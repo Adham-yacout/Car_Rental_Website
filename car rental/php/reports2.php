@@ -20,14 +20,26 @@ yyyy-dd-mm
 
     <table  border="4" width="90%" >
         <tr >
-            <th >
-                plate number
+        <th width="20%"   >
+                image
+                </th>
+            <th>
+             plate number
+            </th>
+            <th>
+             model
+            </th>
+            <th>
+             year
+            </th>
+            <th>
+             transmission
             </th>
             <th>
              start date
             </th>
             <th>
-             end  date
+             end date
             </th>
          
         </tr>
@@ -47,9 +59,11 @@ $searchby2=$_POST['end'];
 if(isset($_POST['submit']))
 {	
     $name = "$searchby";
-    $sql = "SELECT * FROM `reservation`
-    WHERE `paidat`
-    BETWEEN '$searchby1%' and '$searchby2%'"; // SQL with parameters
+    $sql = "SELECT plate_no,start_date,end_date,cc.model,cc.year,cc.image,cc.transmission
+     FROM `reservation` 
+    Natural join car as cc 
+    WHERE `start_date`
+     between '$searchby1%' and '$searchby2%'" ;// SQL with parameters
     $stmt = $connection->prepare($sql); 
     // $stmt->bind_param("s", $name);
     $stmt->execute();
@@ -60,9 +74,22 @@ if(isset($_POST['submit']))
 while($row = $result ->fetch_assoc())
 {
     echo " <tr>
+    <td>
+    <img  src='". $row["image"] . "' width='90%' height='90%' >
+        
+    </td>
    <td>
-       ". $row["plate_no"] ."
-      </td>
+   ". $row["plate_no"] ."
+  </td>
+  <td>
+  ". $row["model"] ."
+ </td>
+ <td>
+  ". $row["year"] ."
+ </td>
+ <td>
+  ". $row["transmission"] ."
+ </td>
      <td>
      ". $row["start_date"] ."
     </td>
