@@ -1,7 +1,4 @@
 
-
-
-
 <html>
     <head>
         <meta charset="UTF-8"> 
@@ -55,7 +52,7 @@ $connection= new mysqli($host, $user, $password, $db_name);
 
 
 // read all rows from database 
- $sql = "SELECT * FROM car";
+ $sql = "SELECT * FROM `car` WHERE STATUS ='Active'";
  $result= $connection->query($sql);
  if(!$result)
  {
