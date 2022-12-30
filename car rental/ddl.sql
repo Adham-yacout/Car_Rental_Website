@@ -1,5 +1,7 @@
 CREATE DATABASE car_rental_system;
 
+CREATE DATABASE car_rental_system;
+
 use car_rental_system;
 CREATE TABLE  car(
     plate_no varchar(7) PRIMARY KEY,
@@ -26,6 +28,7 @@ CREATE TABLE  reservation(
     end_date DATETIME DEFAULT CURRENT_TIMESTAMP ,
     customer_ssn int ,
     amount varchar(150),
+    paidat DATETIME DEFAULT CURRENT_TIMESTAMP ,
     paid   ENUM('Y','N') NOT NULL
   
 );
