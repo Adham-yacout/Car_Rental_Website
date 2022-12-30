@@ -24,11 +24,11 @@
    
     
     </header>
-  <a href="../php/report1.php"><Button >car and customer details</Button></a>
-  <a href="../php/report2.php"><Button >car details</Button></a>
+  <a href="../php/reports1.php"><Button >car and customer details</Button></a>
+  <a href="../php/reports2.php"><Button >car details</Button></a>
   
-  <a href="../php/report4.php"><Button >customer reservation</Button></a>
-  <a href="../php/report5.php"><Button >daily payments</Button></a>
+  <a href="../php/reports4.php"><Button >customer reservation</Button></a>
+  <a href="../php/reports5.php"><Button >daily payments</Button></a>
   <
   
 
