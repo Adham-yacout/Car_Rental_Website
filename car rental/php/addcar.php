@@ -107,7 +107,7 @@ try{$insert->execute([
   <option></option>
   <option value="ACTIVE">Active</option>
   <option value="OUT_OF_SERVICE">out of service</option>
-  <option value="RENTED">Rented</option>
+  
 </select>
       </div>
    
