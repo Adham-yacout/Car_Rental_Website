@@ -14,9 +14,10 @@
 body {
     font-family: "Inter", sans-serif;
     color: #f2f208;
-  
+    background-color: #000;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
+    background-position: center;
     background-image: url("https://wallpaperaccess.com/full/1554143.jpg")
 
 }
