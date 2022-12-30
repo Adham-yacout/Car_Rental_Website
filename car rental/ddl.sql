@@ -5,6 +5,10 @@ CREATE DATABASE car_rental_system;
 
 
 
+
+
+
+
 use car_rental_system;
 CREATE TABLE  car(
     plate_no varchar(7) PRIMARY KEY,
