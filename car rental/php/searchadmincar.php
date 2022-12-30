@@ -84,7 +84,7 @@ $checker = $_POST['search'];
 if($checker=="1")
 {
 //SELECT * FROM `car` WHERE model like"%toyota%"
-$name = "%$searchby%";
+$name = "$searchby%";
 $sql = "SELECT * FROM `car` WHERE model like ?"; // SQL with parameters
 $stmt = $connection->prepare($sql); 
 $stmt->bind_param("s", $name);
