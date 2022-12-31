@@ -1,5 +1,3 @@
-
-
 <?php
  session_start();
 
@@ -18,7 +16,7 @@ if(isset($_POST['Rent']))
   $Check= $_POST['payment'];
   $startdate = $_POST['Start_date'];
 	$enddate=$_POST['End_date'];
-	$payed=$_POST['payment_amount'];
+//	$payed=$_POST['payment_amount'];
   $ssn= $_SESSION['ssn'];
   if($Check=="1")
   { 
@@ -27,44 +25,58 @@ if(isset($_POST['Rent']))
   else if($Check=="2"){
     $Checkv='N';
   }
-  $sql = "SELECT priceperday FROM car WHERE plate_no=?"; // SQL with parameters
-$stmt = $mysql->prepare($sql); 
-$stmt->bind_param("s", $plateno);
-$stmt->execute();
-$result = $stmt->get_result(); // get the mysqli result
-$row= $result->fetch_assoc(); // fetch the data  
-
- $data2= $row["priceperday"];
- 
-
- 
-  $timestamp1 = strtotime($startdate);
-  $timestamp2 = strtotime($enddate);
-  
-
-  $difference = ($timestamp2 - $timestamp1);
-  $difference=$difference/86400;
-  if($difference<0)
-  { 
+  $b= "00:00:00";
+  $c = $startdate." ".$b;
+  $d=$enddate." ".$b;
+  $sql2="SELECT * from reservation where '$plateno' = `plate_no` and( '$c' BETWEEN start_date and end_date or '$d' BETWEEN start_date and end_date )" ;
+  $stmt = $mysql->prepare($sql2); 
+  $stmt->execute();
+  $result = $stmt->get_result(); // get the mysqli result
+  //$row= $result->fetch_assoc(); // fetch the data  
+  if(mysqli_num_rows($result))
+  {
     
-    
-    die("start date cant come after end date");
-    header('location:../php/cars.php');
    
+    echo '<script>alert("Car isnt available in this time")</script>';
+    echo "<script>window.location='../php/cars.php';</script>";
+    //echo ("header('location:');");
+
   }
- $data=$difference*$data2;
- 
-   
-    $result = $mysql -> query("INSERT INTO `reservation`(`plate_no`, `start_date`, `end_date`, `customer_ssn`, `amount`, `paid`) 
-    values ('$plateno','$startdate','$enddate','$ssn','$data','$Checkv')");
-     mysqli_query($mysql,$result);
-      echo '<script>alert("Car rented succesfully")</script>';
-      header('location:../html/userland.php');
+  else{
+    $sql = "SELECT priceperday FROM car WHERE plate_no=?"; // SQL with parameters
+    $stmt = $mysql->prepare($sql); 
+    $stmt->bind_param("s", $plateno);
+    $stmt->execute();
+    $result = $stmt->get_result(); // get the mysqli result
+    $row= $result->fetch_assoc(); // fetch the data  
     
+     $data2= $row["priceperday"];
+     
     
+     
+      $timestamp1 = strtotime($startdate);
+      $timestamp2 = strtotime($enddate);
+      
+    
+      $difference = ($timestamp2 - $timestamp1);
+      $difference=$difference/86400;
+      if($difference<0)
+      { 
+        
+        
+        die("start date cant come after end date");
+        header('location:../php/cars.php');
        
-
-  
+      }
+     $data=$difference*$data2;
+     
+       
+        $result = $mysql -> query("INSERT INTO `reservation`(`plate_no`, `start_date`, `end_date`, `customer_ssn`, `amount`, `paid`) 
+        values ('$plateno','$startdate','$enddate','$ssn','$d','$Checkv')");
+         mysqli_query($mysql,$result);
+          echo '<script>alert("Car rented succesfully")</script>';
+          header('location:../html/userland.php');
+  }
 	 }
 
 ?>
