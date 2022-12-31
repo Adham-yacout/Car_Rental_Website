@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="eg">
-
-    
-
     <head>
         <meta charset="UTF-8">
         <title>
@@ -26,10 +23,9 @@
     </header>
   <a href="../php/reports1.php"><Button >car and customer details</Button></a>
   <a href="../php/reports2.php"><Button >car details</Button></a>
-  
+  <a href="../php/reports3.php"><Button >car status</Button></a>
   <a href="../php/reports4.php"><Button >customer reservation</Button></a>
   <a href="../php/reports5.php"><Button >daily payments</Button></a>
-  <
   
 
 
