@@ -150,6 +150,3 @@ if(isset($_POST['Rent']))
 </div>
   </body>
 </html>
-
-
-
