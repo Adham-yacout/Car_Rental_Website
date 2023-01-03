@@ -72,7 +72,7 @@ if(isset($_POST['Rent']))
      
        
         $result = $mysql -> query("INSERT INTO `reservation`(`plate_no`, `start_date`, `end_date`, `customer_ssn`, `amount`, `paid`) 
-        values ('$plateno','$startdate','$enddate','$ssn','$d','$Checkv')");
+        values ('$plateno','$startdate','$enddate','$ssn','$data','$Checkv')");
          mysqli_query($mysql,$result);
           echo '<script>alert("Car rented succesfully")</script>';
           header('location:../html/userland.php');
